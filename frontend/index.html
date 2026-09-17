@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tender AI | Tender intelligence</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/detail-mobile.css" />
+  <link rel="stylesheet" href="/phase3.css" />
+  <link rel="stylesheet" href="/phase8.css" />
+  <link rel="stylesheet" href="/phase9.css?v=9" />
+  <link rel="stylesheet" href="/phase11.css?v=1" />
+  <link rel="stylesheet" href="/phase12.css?v=1" />
+</head>
+<body>
+  <div class="auth-loading" id="auth-loading" role="status">Checking your workspace…</div>
+  <section class="auth-gate hidden" id="auth-gate" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <div class="brand auth-brand"><span class="brand-mark">T</span><span>Tender <strong>AI</strong></span></div>
+      <p class="eyebrow">LOCAL-FIRST TENDER INTELLIGENCE</p>
+      <h1 id="auth-title">Keep your tender work in one place.</h1>
+      <p class="auth-copy" id="auth-copy">Sign in to open your workspace.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Account actions"><button class="auth-tab active" id="show-login" type="button">Sign in</button><button class="auth-tab" id="show-register" type="button">Create account</button></div>
+      <form class="auth-form" id="login-form">
+        <label>Email<input id="login-email" type="email" autocomplete="email" required /></label>
+        <label>Password<input id="login-password" type="password" autocomplete="current-password" required /></label>
+        <div class="auth-error" id="login-error" role="alert"></div>
+        <button class="primary-button full-width" type="submit" id="login-submit">Sign in <span>→</span></button>
+      </form>
+      <form class="auth-form hidden" id="register-form">
+        <label>Email<input id="register-email" type="email" autocomplete="email" required /></label>
+        <label>Password<input id="register-password" type="password" autocomplete="new-password" minlength="8" required /></label>
+        <label>Confirm password<input id="register-confirm" type="password" autocomplete="new-password" minlength="8" required /></label>
+        <div class="auth-error" id="register-error" role="alert"></div>
+        <button class="primary-button full-width" type="submit" id="register-submit">Create account <span>→</span></button>
+      </form>
+    </div>
+  </section>
+  <div class="app-shell hidden" id="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">T</span><span>Tender <strong>AI</strong></span></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard" aria-label="Dashboard"><span>▦</span>Dashboard</button>
+        <button class="nav-item" data-view="tenders" aria-label="Tenders"><span>◫</span>Tenders <em id="nav-tender-count">0</em></button>
+        <button class="nav-item" data-view="tasks" aria-label="Tasks"><span>✓</span>Tasks</button>
+        <button class="nav-item" data-view="vault" aria-label="Evidence Vault"><span>▤</span>Evidence Vault</button>
+        <button class="nav-item" data-view="profile" aria-label="Company Profile"><span>◎</span>Company Profile</button>
+        <button class="nav-item" data-view="account" aria-label="Account and usage"><span>◌</span>Account &amp; usage</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="local-note"><strong>Local workspace</strong><small>Documents never leave this computer.</small></div>
+        <div class="profile"><div class="avatar">SME</div><div class="account-copy"><strong id="account-email">Your company</strong><small>Workspace account</small></div><button class="logout-button" id="logout-button" type="button">Log out</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" type="button" aria-label="Open workspace navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="page-title">Dashboard</strong></div>
+        <div class="top-actions"><button class="primary-button small" id="topbar-upload"><span>＋</span> New tender</button></div>
+      </header>
+
+      <section class="page" id="dashboard-view">
+        <div class="page-heading"><div><p class="eyebrow">OVERVIEW</p><h1 id="dashboard-greeting">Welcome back<span>.</span></h1><p class="subheading" id="dashboard-subtitle">Here is what needs your attention.</p></div><button class="primary-button" id="open-upload"><span>＋</span> New tender</button></div>
+        <div id="dashboard-empty" class="empty-hero hidden">
+          <div class="empty-icon large">◫</div>
+          <h2>No tenders yet</h2>
+          <p>Upload a tender PDF and Tender AI will extract the requirements, deadlines and risks into one source-aware workspace — all on this computer.</p>
+          <button class="primary-button" id="dashboard-empty-upload">Upload your first tender</button>
+        </div>
+        <div id="dashboard-content">
+          <div class="action-grid" id="action-grid" aria-label="Actions needing attention">
+            <button class="action-card urgent" data-filter="attention"><span class="action-icon" aria-hidden="true">!</span><div><strong id="count-attention">0</strong><small id="label-attention">tenders need your attention</small></div></button>
+            <button class="action-card" data-filter="decision"><span class="action-icon" aria-hidden="true">?</span><div><strong id="count-decision">0</strong><small id="label-decision">await your bid decision</small></div></button>
+            <button class="action-card" data-filter="preparing"><span class="action-icon" aria-hidden="true">✎</span><div><strong id="count-preparing">0</strong><small id="label-preparing">bids being prepared</small></div></button>
+            <button class="action-card urgent" data-filter="missing"><span class="action-icon" aria-hidden="true">▤</span><div><strong id="count-missing">0</strong><small id="label-missing">bids missing required documents</small></div></button>
+            <button class="action-card urgent" data-filter="blocked"><span class="action-icon" aria-hidden="true">⚑</span><div><strong id="count-blocked">0</strong><small id="label-blocked">bids blocked by unresolved items</small></div></button>
+            <button class="action-card good" data-filter="ready"><span class="action-icon" aria-hidden="true">✓</span><div><strong id="count-ready">0</strong><small id="label-ready">bids ready for final review</small></div></button>
+          </div>
+          <div class="content-grid">
+            <section class="panel"><div class="panel-heading"><div><h2>Upcoming deadlines</h2><p>Closing dates stated in the tender documents</p></div></div><div id="deadline-list" class="deadline-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Recently updated</h2><p>Your latest bid activity</p></div></div><div id="recent-list" class="insight-list"></div></section>
+          </div>
+        </div>
+      </section>
+      <section class="page hidden" id="tenders-view">
+        <div class="page-heading"><div><p class="eyebrow">LIBRARY</p><h1>Tenders<span>.</span></h1><p class="subheading">Every opportunity in one clear view.</p></div><button class="primary-button" id="library-upload"><span>＋</span> New tender</button></div>
+        <div id="library-filter-note" class="filter-note hidden"><span id="library-filter-note-text"></span><button class="text-button" id="clear-library-filter">Show all tenders</button></div>
+        <section class="panel library-panel">
+          <div class="filter-bar">
+            <div class="chip-row" id="library-filters" role="tablist" aria-label="Tender lifecycle filters">
+              <button class="chip active" data-filter="all">All</button>
+              <button class="chip" data-filter="new">New</button>
+              <button class="chip" data-filter="under_review">Under review</button>
+              <button class="chip" data-filter="bid_decision_pending">Bid decision pending</button>
+              <button class="chip" data-filter="preparing">Preparing</button>
+              <button class="chip" data-filter="ready_to_submit">Ready to submit</button>
+              <button class="chip" data-filter="submitted">Submitted</button>
+              <button class="chip" data-filter="no_bid">No bid</button>
+            </div>
+            <div class="search-box">⌕<input placeholder="Search tenders" id="search-input" aria-label="Search tenders" /></div>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Tender</th><th>Reference</th><th>Closing</th><th>Your decision</th><th>AI recommendation</th><th>Readiness</th><th>Blockers</th><th></th></tr></thead>
+            <tbody id="library-rows"></tbody>
+          </table></div>
+        </section>
+      </section>
+
+      <section class="page hidden" id="tasks-view">
+        <div class="page-heading"><div><p class="eyebrow">WORK MANAGEMENT</p><h1>Tasks<span>.</span></h1><p class="subheading">Evidence-linked actions from your tender pipeline.</p></div></div>
+        <section class="panel task-board"><div class="panel-heading"><div><h2>Action checklist</h2><p>Only actions supported by tender evidence are shown.</p></div><strong class="completion" id="tasks-summary"></strong></div><div id="tasks-list"><div class="empty-insight">Loading tasks...</div></div></section>
+      </section>
+
+      <section class="page hidden" id="vault-view">
+        <div class="page-heading"><div><p class="eyebrow">EVIDENCE VAULT</p><h1>Company Evidence Vault<span>.</span></h1><p class="subheading">Your reusable company documents, stored locally and reused across bids.</p></div><button class="primary-button" id="vault-toolbar-upload"><span>＋</span> Upload evidence</button></div>
+        <section class="panel evidence-vault" id="vault-panel">
+          <form class="vault-upload hidden" id="vault-upload-form" aria-label="Upload evidence document"><input type="file" id="vault-file" accept="application/pdf" required aria-label="Evidence PDF file" /><select id="vault-category" aria-label="Evidence category"><option value="REGISTRATION">Registration</option><option value="LICENCE">Licence</option><option value="CERTIFICATION">Certification</option><option value="INSURANCE">Insurance</option><option value="PROJECT_REFERENCE">Project reference</option><option value="COMPANY_PROFILE">Company profile</option><option value="SAFETY">Safety</option><option value="TECHNICAL">Technical</option><option value="OTHER">Other</option></select><input id="vault-description" placeholder="Short description (optional)" aria-label="Evidence description" /><button class="primary-button" type="submit">Upload</button><span id="vault-error" role="alert"></span></form>
+          <div class="vault-search"><input id="vault-search-input" placeholder="Search evidence contents" aria-label="Search evidence contents" /><span>Searches the extracted text of your documents. A matching PDF is not proof of compliance — always review before linking.</span></div>
+          <div id="vault-list"><div class="empty-insight">Loading evidence documents...</div></div>
+        </section>
+      </section>
+
+      <section class="page hidden" id="profile-view">
+        <div class="page-heading"><div><p class="eyebrow">COMPANY PROFILE</p><h1>Company Profile<span>.</span></h1><p class="subheading">Used to match your company against tender requirements. Leave fields empty if they do not apply — missing information stays &ldquo;unknown&rdquo; and never becomes a NO_BID.</p></div></div>
+        <section class="panel profile-panel" id="profile-panel"></section>
+      </section>
+      <section class="page hidden" id="account-view">
+        <div class="page-heading"><div><p class="eyebrow">ACCOUNT</p><h1>Plan &amp; usage<span>.</span></h1><p class="subheading">Your current entitlements and usage for this calendar month.</p></div></div>
+        <div id="account-content" class="account-content"><div class="empty-insight">Loading account details...</div></div>
+      </section>
+      <section class="page hidden" id="detail-view">
+        <button class="back-button" id="back-to-library">← Back to tenders</button>
+        <div class="detail-heading">
+          <div><p class="eyebrow">TENDER INTELLIGENCE</p><h1 id="detail-title">Loading tender<span>.</span></h1><p class="subheading" id="detail-meta">Preparing source-aware analysis</p></div>
+          <div class="detail-actions"><button class="secondary-button" id="reanalyze-tender">Re-analyze tender</button><div id="detail-status" class="analysis-pill">QUEUED</div></div>
+        </div>
+        <div id="analysis-banner" class="analysis-banner"><span class="analysis-spinner">◌</span><div><strong id="analysis-banner-title">Analysis queued</strong><p id="analysis-banner-copy">Reading the document and building its evidence index.</p></div><button class="secondary-button hidden" id="retry-analysis">Retry analysis</button></div>
+        <div id="insight-content" class="hidden">
+          <div id="blockers-host"></div>
+          <div class="detail-grid">
+            <section class="panel summary-panel"><div class="panel-heading"><div><h2>Tender overview</h2><p>Facts read directly from the tender document</p></div><span class="evidence-badge">FROM THE DOCUMENT</span></div><div class="summary-fields" id="summary-fields"></div></section>
+            <section class="panel assessment-panel"><div class="panel-heading"><div><h2>AI analysis of this tender</h2><p>Needs your review — this is not your bid decision</p></div></div><div id="assessment-content"></div></section>
+          </div>
+          <div class="detail-grid lower">
+            <section class="panel"><div class="panel-heading"><div><h2>Submission requirements</h2><p>What the tender asks bidders to submit</p></div></div><div class="insight-list" id="requirements-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Required documents</h2><p>Documents requested by the tender</p></div><strong class="completion" id="document-count">0 items</strong></div><div class="insight-list" id="documents-list"></div></section>
+          </div>
+          <div class="detail-grid lower">
+            <section class="panel"><div class="panel-heading"><div><h2>Key dates</h2><p>Only dates stated in the tender document</p></div></div><div class="insight-list" id="dates-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Risks</h2><p>Potential impacts found in the tender</p></div></div><div class="insight-list" id="risks-list"></div></section>
+          </div>
+          <div class="detail-grid lower">
+            <section class="panel"><div class="panel-heading"><div><h2>Suggested clarification questions</h2><p>Manage them in the clarification workspace below</p></div></div><div class="insight-list" id="clarifications-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Company fit</h2><p>Your company profile compared with this tender</p></div><span class="evidence-badge">DECISION SUPPORT</span></div><div id="company-fit-content"><div class="empty-insight">Company fit appears once the analysis is complete.</div></div><button class="secondary-button hidden" id="generate-company-fit">Generate company fit</button></section>
+          </div>
+          <div id="bid-workspace-host"></div>
+          <div id="package-host"></div>
+          <div class="detail-grid lower">
+            <section class="panel ask-panel"><div class="panel-heading"><div><h2>Ask AI</h2><p>Answers come only from this tender document, with page references.</p></div></div><form id="ask-form"><div class="ask-input"><input id="ask-question" placeholder="Ask about this tender..." required aria-label="Your question" /><button class="primary-button" type="submit">Ask <span>→</span></button></div></form><div id="ask-answer" class="ask-answer hidden" aria-live="polite" role="status"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Source evidence</h2><p>Stored excerpts from the tender document</p></div></div><div class="insight-list" id="sources-list"></div></section>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="upload-modal"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close-button" id="close-modal" aria-label="Close">×</button><div class="modal-kicker">NEW OPPORTUNITY</div><h2 id="modal-title">Bring a tender into focus.</h2><p class="modal-copy">Upload the original PDF and Tender AI will build a source-aware workspace around it.</p><form id="upload-form"><label class="dropzone" id="dropzone"><input type="file" id="file-input" accept="application/pdf" hidden /><span class="upload-cloud">↑</span><strong>Drop your tender PDF here</strong><span>or <u>browse your files</u></span><small>PDF only · Max 25 MB</small></label><div class="selected-file hidden" id="selected-file"><span>▤</span><div><strong id="file-name"></strong><small>Ready to upload</small></div><button type="button" id="remove-file" aria-label="Remove selected file">×</button></div><div class="upload-progress hidden" id="upload-progress"><div class="progress-label"><span id="progress-step">Uploading document</span><strong id="progress-percent">0%</strong></div><div class="progress-track"><div id="progress-fill"></div></div></div><div class="form-error hidden" id="form-error" role="alert"></div><button class="primary-button full-width" type="submit" id="upload-submit" disabled>Upload tender <span>→</span></button></form></div></div>
+
+  <div class="modal-backdrop hidden" id="picker-modal"><div class="modal picker-modal" role="dialog" aria-modal="true" aria-labelledby="picker-title"><button class="close-button" id="close-picker" aria-label="Close">×</button><div class="modal-kicker" id="picker-kicker">EVIDENCE PICKER</div><h2 id="picker-title">Link company evidence</h2><p class="modal-copy" id="picker-context"></p><div id="picker-suggestions" class="picker-list"></div><div class="picker-divider" id="picker-vault-divider"><strong>Other documents in your vault</strong><span>Not matched automatically — review before linking.</span></div><div id="picker-vault" class="picker-list"></div><div id="picker-linked-wrap"><div class="picker-divider"><strong>Already linked to this item</strong></div><div id="picker-linked" class="picker-list"></div></div></div></div>
+
+  <div class="modal-backdrop hidden" id="preview-modal"><div class="modal preview-modal" role="dialog" aria-modal="true" aria-labelledby="preview-title"><button class="close-button" id="close-preview" aria-label="Close">×</button><div class="modal-kicker">DOCUMENT PREVIEW</div><h2 id="preview-title">Document</h2><p class="modal-copy">Extracted text from the stored PDF. Use it to review what the document says — extraction quality can vary.</p><div class="preview-nav"><button class="secondary-button" id="preview-prev" aria-label="Previous page">← Previous</button><span id="preview-page-label">Page 1</span><button class="secondary-button" id="preview-next" aria-label="Next page">Next →</button></div><pre class="preview-text" id="preview-text"></pre></div></div>
+  <script src="/app.js?v=16"></script>
+  <script src="/workspace.js"></script>
+</body>
+</html>
+
+
+

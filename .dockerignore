@@ -1,0 +1,54 @@
+# Docker
+Dockerfile
+.dockerignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Local application data (never needed inside the container)
+data/
+uploads/
+company_evidence/
+exports/
+data/indexes/
+*.db
+*.db-journal
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temp scripts
+_fix.py
+_fix2.py
+_fix_api.py
+_write_llm.py
+_write_db2.py
+_update_audit.py
+
+# Git
+.git/
+.gitignore

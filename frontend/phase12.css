@@ -1,0 +1,18 @@
+.account-content { display: grid; gap: 24px; }
+.account-summary h2 { margin: 4px 0; }
+.account-summary p { color: var(--muted, #71827d); }
+.account-metrics, .plan-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.account-metric, .plan-card { border: 1px solid var(--line, #dce5e1); padding: 16px; background: var(--surface, #fff); }
+.account-metric span, .plan-card span { display: block; color: var(--muted, #71827d); font-size: 12px; }
+.account-metric strong { display: block; margin-top: 8px; font-size: 22px; }
+.account-plans h2 { margin-bottom: 12px; }
+.plan-card h3 { margin: 0 0 12px; }
+.plan-card > strong { font-size: 24px; }
+.plan-card p { min-height: 48px; color: var(--muted, #71827d); font-size: 13px; line-height: 1.5; }
+.plan-card.current { border-color: var(--accent, #1d6b5b); box-shadow: inset 0 3px var(--accent, #1d6b5b); }
+.plan-card b, .payment-note { color: var(--accent, #1d6b5b); font-size: 13px; }
+.billing-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.billing-warning { color: #a04b35 !important; }
+.checkout-plan { margin-top: 8px; }
+@media (max-width: 720px) { .account-metrics, .plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .account-metrics, .plan-grid { grid-template-columns: 1fr; } }

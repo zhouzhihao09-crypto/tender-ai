@@ -1,0 +1,10 @@
+@media (max-width: 760px) {
+  .detail-heading { align-items: flex-start; gap: 12px; flex-direction: column; }
+  .detail-grid,
+  .detail-grid.lower { grid-template-columns: 1fr; }
+  .summary-fields { grid-template-columns: 1fr; }
+  .analysis-banner { align-items: flex-start; }
+  .analysis-banner .secondary-button { margin-left: 0; }
+  .ask-input { flex-direction: column; }
+  .ask-input .primary-button { width: 100%; }
+}

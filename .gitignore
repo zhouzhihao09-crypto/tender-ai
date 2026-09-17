@@ -1,0 +1,27 @@
+# Environment and secrets
+.env
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local database
+data/*.db
+
+# Data indexes
+data/indexes/
+
+# Uploads (keep only .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# Tender documents
+*.pdf
+
+# Local test output
+pytest_*.txt
+
+# Temp scripts
+_write_db2.py
