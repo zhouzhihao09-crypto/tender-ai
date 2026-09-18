@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Tender AI architecture</title>
+  <desc id="desc">Verified architecture of the current Tender AI codebase, including frontend, FastAPI services, persistence, document analysis, retrieval, evidence, bid workspace, and optional integrations.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Arial, sans-serif; fill: #475569; }
+      .box { fill: #f8fafc; stroke: #64748b; stroke-width: 2; }
+      .box-core { fill: #e0f2fe; stroke: #0369a1; stroke-width: 2; }
+      .box-store { fill: #f1f5f9; stroke: #475569; stroke-width: 2; stroke-dasharray: 7 5; }
+      .box-output { fill: #dcfce7; stroke: #15803d; stroke-width: 2; }
+      .label { font: 700 15px Arial, sans-serif; fill: #0f172a; }
+      .detail { font: 400 13px Arial, sans-serif; fill: #334155; }
+      .note { font: 400 14px Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1400" height="1050" fill="#ffffff"/>
+  <text x="700" y="42" text-anchor="middle" class="title">Tender AI: verified application architecture</text>
+  <text x="700" y="68" text-anchor="middle" class="subtitle">Based on the current frontend, FastAPI, service, persistence, and integration code</text>
+
+  <g>
+    <rect x="40" y="110" width="230" height="86" rx="12" class="box"/>
+    <text x="155" y="143" text-anchor="middle" class="label">Server-served frontend</text>
+    <text x="155" y="167" text-anchor="middle" class="detail">HTML, CSS, app.js, workspace.js</text>
+
+    <rect x="330" y="110" width="250" height="86" rx="12" class="box-core"/>
+    <text x="455" y="143" text-anchor="middle" class="label">FastAPI application</text>
+    <text x="455" y="167" text-anchor="middle" class="detail">API routers, static frontend, probes</text>
+
+    <rect x="640" y="110" width="250" height="86" rx="12" class="box"/>
+    <text x="765" y="143" text-anchor="middle" class="label">Request safeguards</text>
+    <text x="765" y="167" text-anchor="middle" class="detail">sessions, ownership, rate limits, body limit</text>
+
+    <rect x="950" y="110" width="330" height="86" rx="12" class="box-core"/>
+    <text x="1115" y="143" text-anchor="middle" class="label">Application services</text>
+    <text x="1115" y="167" text-anchor="middle" class="detail">analysis, evidence, assessment, workspace, package</text>
+  </g>
+
+  <path d="M270 153 H330" class="arrow"/>
+  <path d="M580 153 H640" class="arrow"/>
+  <path d="M890 153 H950" class="arrow"/>
+
+  <g>
+    <rect x="70" y="290" width="240" height="94" rx="12" class="box"/>
+    <text x="190" y="323" text-anchor="middle" class="label">PDF inputs</text>
+    <text x="190" y="347" text-anchor="middle" class="detail">tender uploads and evidence PDFs</text>
+    <text x="190" y="369" text-anchor="middle" class="detail">header and size validation</text>
+
+    <rect x="370" y="290" width="240" height="94" rx="12" class="box-store"/>
+    <text x="490" y="323" text-anchor="middle" class="label">Local storage</text>
+    <text x="490" y="347" text-anchor="middle" class="detail">uploads, company_evidence, exports</text>
+    <text x="490" y="369" text-anchor="middle" class="detail">S3 adapter is optional</text>
+
+    <rect x="670" y="290" width="240" height="94" rx="12" class="box"/>
+    <text x="790" y="323" text-anchor="middle" class="label">Document processing</text>
+    <text x="790" y="347" text-anchor="middle" class="detail">pypdf page extraction</text>
+    <text x="790" y="369" text-anchor="middle" class="detail">overlapping page-referenced chunks</text>
+
+    <rect x="970" y="290" width="330" height="94" rx="12" class="box-core"/>
+    <text x="1135" y="323" text-anchor="middle" class="label">Analysis and retrieval</text>
+    <text x="1135" y="347" text-anchor="middle" class="detail">deterministic extraction plus grounded JSON</text>
+    <text x="1135" y="369" text-anchor="middle" class="detail">keyword and hybrid source retrieval</text>
+  </g>
+
+  <path d="M1115 196 C1115 235 190 235 190 290" class="arrow"/>
+  <path d="M190 384 H370" class="arrow"/>
+  <path d="M610 337 H670" class="arrow"/>
+  <path d="M910 337 H970" class="arrow"/>
+
+  <g>
+    <rect x="70" y="500" width="260" height="94" rx="12" class="box-store"/>
+    <text x="200" y="533" text-anchor="middle" class="label">SQLAlchemy database</text>
+    <text x="200" y="557" text-anchor="middle" class="detail">SQLite locally; PostgreSQL deployment</text>
+    <text x="200" y="579" text-anchor="middle" class="detail">Alembic migrations and seeded dev user</text>
+
+    <rect x="390" y="500" width="260" height="94" rx="12" class="box-store"/>
+    <text x="520" y="533" text-anchor="middle" class="label">Optional vector index</text>
+    <text x="520" y="557" text-anchor="middle" class="detail">sentence-transformers embeddings</text>
+    <text x="520" y="579" text-anchor="middle" class="detail">FAISS artifact under data/indexes</text>
+
+    <rect x="710" y="500" width="260" height="94" rx="12" class="box-store"/>
+    <text x="840" y="533" text-anchor="middle" class="label">Optional AI providers</text>
+    <text x="840" y="557" text-anchor="middle" class="detail">local Ollama or configured OpenAI</text>
+    <text x="840" y="579" text-anchor="middle" class="detail">deterministic fallback remains available</text>
+
+    <rect x="1030" y="500" width="260" height="94" rx="12" class="box-store"/>
+    <text x="1160" y="533" text-anchor="middle" class="label">Optional queue</text>
+    <text x="1160" y="557" text-anchor="middle" class="detail">Redis and RQ when configured</text>
+    <text x="1160" y="579" text-anchor="middle" class="detail">BackgroundTasks fallback otherwise</text>
+  </g>
+
+  <path d="M1135 384 C1135 430 200 430 200 500" class="arrow"/>
+  <path d="M1135 384 C1135 430 520 430 520 500" class="arrow"/>
+  <path d="M1135 384 C1135 430 840 430 840 500" class="arrow"/>
+  <path d="M1135 384 C1135 430 1160 430 1160 500" class="arrow"/>
+
+  <g>
+    <rect x="70" y="710" width="260" height="94" rx="12" class="box-output"/>
+    <text x="200" y="743" text-anchor="middle" class="label">Evidence Vault</text>
+    <text x="200" y="767" text-anchor="middle" class="detail">upload, extract, search, preview</text>
+    <text x="200" y="789" text-anchor="middle" class="detail">explicit evidence linking</text>
+
+    <rect x="390" y="710" width="260" height="94" rx="12" class="box-output"/>
+    <text x="520" y="743" text-anchor="middle" class="label">Grounded Ask AI</text>
+    <text x="520" y="767" text-anchor="middle" class="detail">source-referenced answers</text>
+    <text x="520" y="789" text-anchor="middle" class="detail">page snippets returned with results</text>
+
+    <rect x="710" y="710" width="260" height="94" rx="12" class="box-output"/>
+    <text x="840" y="743" text-anchor="middle" class="label">Bid workspace</text>
+    <text x="840" y="767" text-anchor="middle" class="detail">requirements, documents, tasks</text>
+    <text x="840" y="789" text-anchor="middle" class="detail">clarifications and readiness</text>
+
+    <rect x="1030" y="710" width="260" height="94" rx="12" class="box-output"/>
+    <text x="1160" y="743" text-anchor="middle" class="label">Submission package</text>
+    <text x="1160" y="767" text-anchor="middle" class="detail">manifest, evidence selection, ZIP export</text>
+    <text x="1160" y="789" text-anchor="middle" class="detail">local export history</text>
+  </g>
+
+  <path d="M200 594 C200 640 200 660 200 710" class="arrow"/>
+  <path d="M520 594 C520 640 520 660 520 710" class="arrow"/>
+  <path d="M840 594 C840 640 840 660 840 710" class="arrow"/>
+  <path d="M1160 594 C1160 640 1160 660 1160 710" class="arrow"/>
+
+  <g>
+    <rect x="390" y="875" width="260" height="82" rx="12" class="box-store"/>
+    <text x="520" y="908" text-anchor="middle" class="label">Optional Stripe test billing</text>
+    <text x="520" y="932" text-anchor="middle" class="detail">checkout, portal, webhook, state</text>
+
+    <rect x="710" y="875" width="260" height="82" rx="12" class="box-output"/>
+    <text x="840" y="908" text-anchor="middle" class="label">Dashboard and library</text>
+    <text x="840" y="932" text-anchor="middle" class="detail">action counts, deadlines, recent activity</text>
+  </g>
+
+  <path d="M520 804 V875" class="arrow"/>
+  <path d="M840 804 V875" class="arrow"/>
+  <text x="700" y="1010" text-anchor="middle" class="note">Dashed boxes are optional or deployment-specific. The local application works with SQLite, local storage, deterministic analysis, and no API credentials.</text>
+</svg>

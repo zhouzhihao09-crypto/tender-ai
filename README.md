@@ -6,6 +6,26 @@ The project demonstrates an end-to-end application architecture: FastAPI backend
 
 AI-generated analysis is decision support, not legal, procurement, or compliance advice. Users should review the extracted sources before making a submission decision.
 
+![Tender AI workflow demo](docs/tender-ai-demo.gif)
+
+_Demo of the tender analysis to evidence/results workflow using safe demo data._
+
+## Product Screenshots
+
+The screenshots below were captured from the live local application using safe, temporary demo PDFs. No private or user documents are included.
+
+![Tender AI dashboard](docs/images/dashboard.png)
+
+_Dashboard overview with tender actions, deadlines, and recent activity._
+
+![Tender analysis workspace](docs/images/tender-analysis.png)
+
+_Source-aware tender analysis with extracted overview, AI assessment, requirements, and document details._
+
+![Evidence results view](docs/images/evidence-results.png)
+
+_Evidence Vault with extracted-text preview for a safe demo company document._
+
 ## What It Does
 
 - Extracts text from uploaded tender PDFs and preserves page references.
@@ -77,6 +97,12 @@ The optional embedding path uses `sentence-transformers` and can write a FAISS i
 
 If Redis is configured, analysis can run through RQ. Otherwise, the API uses FastAPI background tasks, which are suitable for local development but are process-local.
 
+## Architecture
+
+![Tender AI architecture](docs/tender-ai-architecture.svg)
+
+_The diagram follows the current codebase. Dashed components are optional or deployment-specific; the local development path uses SQLite, local storage, deterministic analysis, and no API credentials._
+
 ## AI Provider Configuration
 
 `AI_PROVIDER=ollama` is the local default. The default Ollama model is `qwen2.5:7b`, configured through `OLLAMA_URL` and `OLLAMA_MODEL`.
@@ -111,6 +137,12 @@ frontend/
   app.js               Dashboard, tender, account, and billing UI
   workspace.js         Bid workspace and evidence-linking UI
   styles.css           Frontend styling
+docs/
+  tender-ai-architecture.svg
+  images/
+    dashboard.png
+    tender-analysis.png
+    evidence-results.png
 alembic/
   versions/            Database migrations
 tests/                 API, service, security, billing, and workflow tests
